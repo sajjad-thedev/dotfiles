@@ -1,0 +1,20 @@
+# Sensitive files
+**/*.key
+**/*.pem
+**/*secret*
+**/*token*
+**/*password*
+
+# tmux plugins (reinstalled by tpm automatically)
+tmux/.config/tmux/plugins/
+
+# nvim plugin cache
+nvim/.config/nvim/.cache/
+
+# Neovim undo/swap files
+nvim/.config/nvim/undodir/
+
+# Compiled/cached files
+**/*.zwc
+**/__pycache__/
+**/*.pyc
