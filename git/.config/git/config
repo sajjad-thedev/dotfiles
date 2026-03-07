@@ -29,3 +29,5 @@
 [user]
 	name = Sajjad Ahmed
 	email = sajjadahmed8269@gmail.com
+[core]
+	fileMode = false
