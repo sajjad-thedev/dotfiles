@@ -20,3 +20,7 @@ end, { desc = "Mobile Live Preview (Chrome)" })
 
 -- Paste over selected text without overwriting the register with the deleted text
 vim.keymap.set("x", "<leader>p", [["_dP]])
+
+-- Scrolling and centering the cursor
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
