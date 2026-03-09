@@ -16,7 +16,7 @@ size = 14
 padding.x = 14
 padding.y = 14
 decorations = "None"
-opacity = 0.95
+opacity = 0.90
 blur = true
 
 [keyboard]
@@ -24,3 +24,8 @@ bindings = [
 { key = "Insert", mods = "Shift", action = "Paste" },
 { key = "Insert", mods = "Control", action = "Copy" }
 ]
+
+[colors]
+[colors.primary]
+background = "#15151f"  # change this to whatever darkness you want
+foreground = "#cdd6f4"  # keep your existing foreground
