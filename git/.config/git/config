@@ -28,6 +28,6 @@
 	autoupdate = true        # Apply stored conflict resolutions automatically
 [user]
 	name = Sajjad Ahmed
-	email = sajjadahmed8269@gmail.com
+	email = sajjad.thedev@gmail.com
 [core]
 	fileMode = false
