@@ -1,33 +1,4 @@
--- Undo tree visualization
 return {
-  {
-    "mbbill/undotree",
-    keys = {
-      { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Undo Tree" },
-    },
-  },
-  -- Better code actions UI
-  {
-    "aznhe21/actions-preview.nvim",
-    keys = {
-      {
-        "<leader>ca",
-        function()
-          require("actions-preview").code_actions()
-        end,
-        mode = { "n", "v" },
-        desc = "Code Action Preview",
-      },
-    },
-  },
-  {
-    "sphamba/smear-cursor.nvim",
-    opts = {
-      -- You can customize the animation speed or color here
-      smear_between_buffers = true,
-      cursor_color = "#d3abe1", -- Optional: match your theme
-    },
-  },
   {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
@@ -47,6 +18,12 @@ return {
         tailwind = true,                               -- Enable tailwind colors
         sass = { enable = true, parsers = { "css" } }, -- Enable sass colors
       },
+    },
+  },
+  {
+    "mbbill/undotree",
+    keys = {
+      { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Undo Tree" },
     },
   },
 }
