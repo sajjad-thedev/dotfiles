@@ -1,100 +1,210 @@
 @import "../omarchy/current/theme/waybar.css";
 
+/* ── Base ─────────────────────────────────────────────────────── */
 * {
-  background-color: @background;
-  color: @foreground;
-
   border: none;
   border-radius: 0;
   min-height: 0;
-  font-family: 'JetBrainsMono Nerd Font';
-  font-size: 12px;
+  font-family: "JetBrainsMono Nerd Font", monospace;
 }
 
+window#waybar {
+  background-color: @background;
+  border-bottom: 1px solid rgba(205, 214, 244, 0.15);
+}
+
+/* ── Edges ────────────────────────────────────────────────────── */
 .modules-left {
-  margin-left: 8px;
+  margin-left: 4px;
 }
-
 .modules-right {
   margin-right: 8px;
 }
 
+/* ── Omarchy button ───────────────────────────────────────────── */
+#custom-omarchy {
+  font-size: 18px;
+  padding: 0 12px 0 8px;
+  color: #cba6f7;
+  margin-right: 2px;
+}
+
+#custom-omarchy:hover {
+  color: @foreground;
+}
+
+/* ── Workspaces ───────────────────────────────────────────────── */
+#workspaces {
+  margin: 0 4px;
+}
+
 #workspaces button {
   all: initial;
-  padding: 0 6px;
-  margin: 0 1.5px;
-  min-width: 9px;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 16px;
+  padding: 0 7px;
+  min-width: 10px;
+  transition: color 0.15s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: 0;
+  border-left: 1px solid rgba(205, 214, 244, 0.08);
 }
 
 #workspaces button.empty {
   opacity: 0.5;
 }
 
-#cpu,
-#battery,
+#workspaces button.active {
+  color: #cba6f7;
+  font-weight: bold;
+  border-bottom: 2px solid #cba6f7;
+}
+
+#workspaces button.urgent {
+  color: #f38ba8;
+  border-bottom: 2px solid #f38ba8;
+}
+
+/* ── Clock (center) ───────────────────────────────────────────── */
+#clock {
+  font-size: 14px;
+  font-weight: bold;
+  color: #f9e2af;
+  padding: 0 14px;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #f9e2af;
+}
+
+/* ── Right modules — shared base ─────────────────────────────── */
+#idle_inhibitor,
+#network,
 #pulseaudio,
-#custom-omarchy,
+#cpu,
+#custom-update,
+#custom-voxtype,
+#custom-expand-icon {
+  padding: 0 10px;
+  color: rgba(205, 214, 244, 0.7);
+  transition: color 0.15s ease;
+}
+
+#idle_inhibitor:hover,
+#network:hover,
+#pulseaudio:hover,
+#cpu:hover {
+  color: @foreground;
+}
+
+/* ── Separators via border-left ───────────────────────────────── */
+#network,
+#pulseaudio,
+#cpu,
 #custom-update {
-  min-width: 12px;
-  margin: 0 7.5px;
+  border-left: 1px solid rgba(205, 214, 244, 0.08);
 }
 
-#tray {
-  margin-right: 16px;
+/* ── Module-specific colors ───────────────────────────────────── */
+#idle_inhibitor.activated {
+  color: #f9e2af;
 }
 
-#bluetooth {
-  margin-right: 17px;
+#idle_inhibitor.deactivated {
+  color: rgba(205, 214, 244, 0.3);
 }
 
 #network {
-  margin-right: 13px;
+  color: #89b4fa;
+  border-bottom: 2px solid #89b4fa;
 }
 
-#custom-expand-icon {
-  margin-right: 18px;
+#network.disconnected {
+  color: #f38ba8;
+  border-bottom: 2px solid #f38ba8;
 }
 
-tooltip {
-  padding: 2px;
+#pulseaudio {
+  color: #cba6f7;
+  border-bottom: 2px solid #cba6f7;
 }
 
-#custom-update {
-  font-size: 10px;
+#pulseaudio.muted {
+  color: rgba(205, 214, 244, 0.3);
+  border-bottom: 2px solid rgba(205, 214, 244, 0.15);
 }
 
-#clock {
-  margin-left: 8.75px;
+#cpu {
+  color: #a6e3a1;
+  border-bottom: 2px solid #a6e3a1;
 }
 
-.hidden {
-  opacity: 0;
+#cpu.warning {
+  color: #f9e2af;
+  border-bottom: 2px solid #f9e2af;
 }
 
+#cpu.critical {
+  color: #f38ba8;
+  border-bottom: 2px solid #f38ba8;
+}
+
+/* ── Status indicators (small, right of center) ───────────────── */
 #custom-screenrecording-indicator,
 #custom-idle-indicator,
-#custom-notification-silencing-indicator {
-  min-width: 12px;
-  margin-left: 5px;
-  margin-right: 0;
-  font-size: 10px;
-  padding-bottom: 1px;
+#custom-notification-silencing-indicator,
+#custom-voxtype {
+  font-size: 9px;
+  padding: 0 4px;
+  color: transparent;
 }
 
 #custom-screenrecording-indicator.active {
-  color: #a55555;
+  color: #f38ba8;
 }
 
 #custom-idle-indicator.active,
 #custom-notification-silencing-indicator.active {
-  color: #a55555;
-}
-
-#custom-voxtype {
-  min-width: 12px;
-  margin: 0 0 0 7.5px;
+  color: #f9e2af;
 }
 
 #custom-voxtype.recording {
-  color: #a55555;
+  color: #f38ba8;
+}
+
+/* ── Update indicator ─────────────────────────────────────────── */
+#custom-update {
+  font-size: 9px;
+  color: rgba(205, 214, 244, 0.4);
+}
+
+/* ── Tray ─────────────────────────────────────────────────────── */
+#tray {
+  padding: 0 10px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+/* ── Tooltip ──────────────────────────────────────────────────── */
+tooltip {
+  background-color: @background;
+  border: 1px solid rgba(205, 214, 244, 0.1);
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+tooltip label {
+  color: @foreground;
+  font-size: 12px;
+}
+
+/* ── Hidden utility ───────────────────────────────────────────── */
+.hidden {
+  opacity: 0;
+  min-width: 0;
+  padding: 0;
 }
