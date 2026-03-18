@@ -34,18 +34,24 @@ return {
           gap = 1,
           columns = {
             { "kind_icon" },
-            { "label",    "label_description", gap = 1 },
+            { "label", "label_description", gap = 1 },
             { "kind" },
           },
           components = {
             kind_icon = {
               ellipsis = false,
-              text = function(ctx) return ctx.kind_icon .. " " end,
-              highlight = function(ctx) return "BlinkCmpKind" .. ctx.kind end,
+              text = function(ctx)
+                return ctx.kind_icon .. " "
+              end,
+              highlight = function(ctx)
+                return "BlinkCmpKind" .. ctx.kind
+              end,
             },
             label = {
               width = { fill = true, max = 40 },
-              text = function(ctx) return ctx.label .. (ctx.label_detail or "") end,
+              text = function(ctx)
+                return ctx.label .. (ctx.label_detail or "")
+              end,
               highlight = function(ctx)
                 local highlights = {}
                 if ctx.deprecated then
@@ -61,8 +67,12 @@ return {
             kind = {
               ellipsis = false,
               width = { fill = false },
-              text = function(ctx) return ctx.kind end,
-              highlight = function(ctx) return "BlinkCmpKind" .. ctx.kind end,
+              text = function(ctx)
+                return ctx.kind
+              end,
+              highlight = function(ctx)
+                return "BlinkCmpKind" .. ctx.kind
+              end,
             },
           },
         },
@@ -116,11 +126,11 @@ return {
       vim.api.nvim_set_hl(0, name, val)
     end
 
-    hi("BlinkCmpMenu", { bg = mocha.mantle })
-    hi("BlinkCmpMenuBorder", { fg = mocha.surface1, bg = mocha.mantle })
+    hi("BlinkCmpMenu", { link = "NormalFloat" })
+    hi("BlinkCmpMenuBorder", { fg = mocha.surface1 })
     hi("BlinkCmpMenuSelection", { bg = mocha.surface0, bold = true })
-    hi("BlinkCmpDoc", { bg = mocha.mantle })
-    hi("BlinkCmpDocBorder", { fg = mocha.surface1, bg = mocha.mantle })
+    hi("BlinkCmpDoc", { link = "NormalFloat" })
+    hi("BlinkCmpDocBorder", { fg = mocha.surface1 })
     hi("BlinkCmpDocCursorLine", { bg = mocha.surface0 })
     hi("BlinkCmpLabel", { fg = mocha.text, bg = mocha.mantle })
     hi("BlinkCmpLabelDeprecated", { fg = mocha.overlay0, bg = mocha.mantle, strikethrough = true })
