@@ -15,3 +15,6 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- Scrolling and centering the cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+
+-- Set ctrl-; to add a ";" to the end of the line
+vim.keymap.set('i', '<C-;>', '<Esc>A;<Esc>', { desc = 'Append semicolon from insert' })
