@@ -102,13 +102,14 @@ return {
             local bg_alt = get_hlgroup("Visual").bg
             local green = get_hlgroup("String").fg
             local red = get_hlgroup("Error").fg
+            local purple = get_hlgroup("Keyword").fg
             -- return a table of highlights for telescope based on
             -- colors gotten from highlight groups
             highlights.SnacksPickerBorder = { fg = bg_alt, bg = bg }
             highlights.SnacksPicker = { bg = bg }
             highlights.SnacksPickerPreviewBorder = { fg = bg, bg = bg }
             highlights.SnacksPickerPreview = { bg = bg }
-            highlights.SnacksPickerPreviewTitle = { fg = bg, bg = green }
+            highlights.SnacksPickerPreviewTitle = { fg = "#11111b", bg = purple, bold = true }
             highlights.SnacksPickerBoxBorder = { fg = bg, bg = bg }
             highlights.SnacksPickerInputBorder = { fg = bg, bg = bg }
             highlights.SnacksPickerInputSearch = { fg = red, bg = bg }
