@@ -107,7 +107,7 @@ alias srcz='source ~/.zshrc'
 alias dotconf='nvim ~/dotfiles/'
 
 # ALIASES — GIT
-alias gs='git status'
+# alias gs='git status'
 alias ga='git add'
 alias gaa='git add .'
 alias gc='git commit -m'
@@ -128,9 +128,9 @@ alias gpop='git stash pop'
 alias gtag='git tag'
 
 # ALIASES — PYTHON / FLASK
-alias venv='source .venv/bin/activate'
+alias venv='source venv/bin/activate'
 alias venvcreate='python -m venv .venv && source .venv/bin/activate'
-alias fr='flask run'
+alias fr='flask run --host=0.0.0.0'
 alias frd='flask run --debug'
 alias pipi='pip install'
 alias pipf='pip freeze > requirements.txt'
@@ -260,3 +260,5 @@ fi
 
 # POWERLEVEL10K CONFIG
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+export PATH=$PATH:/home/sajjadahmed/.spicetify
