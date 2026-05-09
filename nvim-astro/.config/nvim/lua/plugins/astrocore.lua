@@ -5,12 +5,12 @@ return {
   opts = {
     -- Configure core features of AstroNvim
     features = {
-      large_buf = { size = 1024 * 256, lines = 10000 },
-      autopairs = true,
-      cmp = true,
-      diagnostics = { virtual_text = true, virtual_lines = false },
-      highlighturl = true,
-      notifications = true,
+      large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
+      autopairs = true, -- enable autopairs at start
+      cmp = true, -- enable completion at start
+      diagnostics = { virtual_text = true, virtual_lines = false }, -- diagnostic settings on startup
+      highlighturl = true, -- highlight URLs at start
+      notifications = true, -- enable notifications at start
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
@@ -42,13 +42,17 @@ return {
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
+        -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
       },
     },
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
+      -- first key is the mode
       n = {
+        -- second key is the lefthand side of the map
+
         -- Nvim-surround keybindings
         ["gsa"] = { "<Plug>(nvim-surround-normal)", desc = "Add surround" },
         ["gsd"] = { "<Plug>(nvim-surround-delete)", desc = "Delete surround" },
@@ -70,13 +74,27 @@ return {
         ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
         -- mappings seen under group name "Buffer"
-        ["<Leader>bd"] = { function() require("astrocore.buffer").close() end, desc = "Close buffer" },
+        ["<Leader>bd"] = {
+          function()
+            require("astroui.status.heirline").buffer_picker(
+              function(bufnr) require("astrocore.buffer").close(bufnr) end
+            )
+          end,
+          desc = "Close buffer from tabline",
+        },
+
         -- grug-far project search/replace
         ["<Leader>sr"] = { function() require("grug-far").open() end, desc = "Search & replace" },
 
         -- todo-comments navigation
         ["]t"] = { function() require("todo-comments").jump_next() end, desc = "Next TODO" },
         ["[t"] = { function() require("todo-comments").jump_prev() end, desc = "Prev TODO" },
+        -- tables with just a `desc` key will be registered with which-key if it's installed
+        -- this is useful for naming menus
+        -- ["<Leader>b"] = { desc = "Buffers" },
+
+        -- setting a mapping to false will disable it
+        -- ["<C-S>"] = false,
       },
       v = {
         ["gsa"] = { "<Plug>(nvim-surround-visual)", desc = "Add surround" },

@@ -27,11 +27,6 @@ return {
       LSPLoading8 = "⠧",
       LSPLoading9 = "⠇",
       LSPLoading10 = "⠏",
-      -- Set these to empty strings "" to remove the triangles
-      -- Or use "█" for a solid square block
-      -- Or use " " for a simple space
-      TabSeparatorLeft = "",
-      TabSeparatorRight = "",
     },
   },
 }

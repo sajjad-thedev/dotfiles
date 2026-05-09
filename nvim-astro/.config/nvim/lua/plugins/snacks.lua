@@ -1,7 +1,3 @@
--- return {
---   "folke/snacks.nvim",
--- }
-
 return {
   {
     "nvim-telescope/telescope.nvim",
