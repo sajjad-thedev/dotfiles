@@ -3,7 +3,6 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
   -- import/override with your plugins folder
-  -- nvchad snacks picker theme
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.terminal-integration.vim-tmux-navigator" },

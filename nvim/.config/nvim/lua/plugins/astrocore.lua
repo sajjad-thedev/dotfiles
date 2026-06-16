@@ -51,8 +51,6 @@ return {
     mappings = {
       -- first key is the mode
       n = {
-        -- second key is the lefthand side of the map
-
         -- Nvim-surround keybindings
         ["gsa"] = { "<Plug>(nvim-surround-normal)", desc = "Add surround" },
         ["gsd"] = { "<Plug>(nvim-surround-delete)", desc = "Delete surround" },
@@ -89,12 +87,6 @@ return {
         -- todo-comments navigation
         ["]t"] = { function() require("todo-comments").jump_next() end, desc = "Next TODO" },
         ["[t"] = { function() require("todo-comments").jump_prev() end, desc = "Prev TODO" },
-        -- tables with just a `desc` key will be registered with which-key if it's installed
-        -- this is useful for naming menus
-        -- ["<Leader>b"] = { desc = "Buffers" },
-
-        -- setting a mapping to false will disable it
-        -- ["<C-S>"] = false,
       },
       v = {
         ["gsa"] = { "<Plug>(nvim-surround-visual)", desc = "Add surround" },

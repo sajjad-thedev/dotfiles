@@ -1,1 +1,0 @@
-/home/sajjadahmed/.config/omarchy/current/theme/neovim.lua
