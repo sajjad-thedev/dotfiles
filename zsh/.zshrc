@@ -69,6 +69,22 @@ bindkey '^W' backward-kill-word
 bindkey '^U' kill-whole-line
 
 
+
+# --- tmux-sessionizer widget (add to ~/.zshrc) ---------------------------
+# Before adding: confirm ^G is free by running
+#   bindkey -M viins '^G'
+#   bindkey -M vicmd '^G'
+# If either prints an existing binding, change '^G' below to something free.
+
+tmux-sessionizer-widget() {
+  BUFFER="tmux-sessionizer"
+  zle accept-line
+}
+zle -N tmux-sessionizer-widget
+bindkey -M viins '^K' tmux-sessionizer-widget
+bindkey -M vicmd '^K' tmux-sessionizer-widget
+
+
 # =============================================================================
 # ALIASES — SYSTEM
 alias update='sudo pacman -Syu'
@@ -153,6 +169,26 @@ alias localip='ip -brief address'      # local network IPs
 
 # =============================================================================
 # FUNCTIONS
+# Sesh-sessions
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+    zle reset-prompt > /dev/null 2>&1 || true
+    [[ -z "$session" ]] && return
+    sesh connect $session
+  }
+}
+
+zle     -N             sesh-sessions
+bindkey -M emacs '\es' sesh-sessions
+bindkey -M vicmd '\es' sesh-sessions
+bindkey -M viins '\es' sesh-sessions
+
+
+
 # Make a directory and cd into it immediately
 mkcd() { mkdir -p "$1" && cd "$1" }
 
