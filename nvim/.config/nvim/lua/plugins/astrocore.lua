@@ -96,7 +96,6 @@ return {
       },
       i = {
         ["<C-;>"] = { "<Esc>A;<Esc>", desc = "Append semicolon from insert" },
-        ["\027[27;5;59~"] = { "<Esc>A;<Esc>", desc = "Append semicolon from insert (tmux)" },
       },
     },
   },
