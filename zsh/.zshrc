@@ -45,12 +45,16 @@ setopt CORRECT
 export JAVA_HOME=/usr/lib/jvm/default
 export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 
 # =============================================================================
 # ENVIRONMENT
 export EDITOR=nvim
 export VISUAL=nvim
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # bat-powered man pages
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # bat-powered man pages
 export DIRENV_LOG_FORMAT=" "
 
 

@@ -34,7 +34,6 @@ return {
     servers = {
       -- "pyright"
       "clangd",
-      "pyright",
       "html",
       "cssls",
       "ts_ls",

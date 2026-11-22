@@ -11,6 +11,7 @@ return {
       ensure_installed = {
         -- install language servers
         "lua-language-server",
+        "pyright",
 
         -- install formatters
         "stylua",
@@ -21,14 +22,13 @@ return {
         -- install any other package
         "tree-sitter-cli",
         -- LSP servers
-        "pyright", -- Python
         "html-lsp", -- HTML
         "css-lsp", -- CSS
         "typescript-language-server", -- JavaScript/TypeScript
 
         -- Formatters
         "clang-format", -- C
-        "black", -- Python
+        "ruff",
         "prettier", -- HTML, CSS, JS
         "codelldb",
       },

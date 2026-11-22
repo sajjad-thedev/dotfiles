@@ -1,0 +1,233 @@
+" ============================================================
+"  .ideavimrc — IdeaVim config inspired by AstroNvim workflow
+" ============================================================
+
+" ─── Plugins ─────────────────────────────────────────────────
+Plug 'tpope/vim-surround'          " gsa / gsd / gsc surround ops
+Plug 'tpope/vim-commentary'        " gc to comment
+Plug 'machakann/vim-highlightedyank'
+Plug 'preservim/nerdtree'
+Plug 'easymotion/vim-easymotion'
+" ─── Core Options ────────────────────────────────────────────
+set scrolloff=8          " keep 8 lines visible around cursor
+set number               " line numbers
+set relativenumber       " relative line numbers (AstroNvim default)
+set incsearch            " incremental search
+set ignorecase           " case-insensitive search …
+set smartcase            "   … unless you type a capital
+set hlsearch             " highlight matches
+set ideamarks            " sync vim marks with IDEA bookmarks
+set ideastatusicon=gray  " status bar icon
+set clipboard+=unnamed   " share clipboard with system
+set which-key            " show pending keybind popup
+set notimeout            " don't time out on mappings
+set noerrorbells
+set easymotion
+" ─── Leader ──────────────────────────────────────────────────
+let mapleader = " "
+
+" ─── Normal mode ─────────────────────────────────────────────
+
+" Keep cursor centered when cycling search results (your mapping)
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Scroll half-page and re-center (your mapping)
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" ── Surround (vim-surround plugin, mirrors nvim-surround keys) ──
+" gsa  →  ys  (add surround around motion)
+" gsd  →  ds  (delete surround)
+" gsc  →  cs  (change surround)
+nmap gsa ys
+nmap gsd ds
+nmap gsc cs
+
+" ── File / project navigation (mirrors <Leader><Space> / picker) ──
+nnoremap <Leader><Space> :action GotoFile<CR>
+nnoremap <Leader>sg      :action FindInPath<CR>
+nnoremap <Leader>sb      :action FileStructurePopup<CR>
+nnoremap <Leader>sr      :action ReplaceInPath<CR>
+
+" ── Buffer / tab navigation (mirrors ]b / [b) ──
+nnoremap ]b :action NextTab<CR>
+nnoremap [b :action PreviousTab<CR>
+nnoremap <Leader>bd :action CloseContent<CR>
+
+" ── TODO navigation (mirrors ]t / [t) ──
+nnoremap ]t :action GotoNextBookmarkInCurrentFile<CR>
+nnoremap [t :action GotoPreviousBookmarkInCurrentFile<CR>
+
+" ── Code navigation (IntelliJ-native, fills the gaps) ──
+nnoremap gd  :action GotoDeclaration<CR>
+nnoremap gr  :action FindUsages<CR>
+nnoremap gi  :action GotoImplementation<CR>
+nnoremap gt  :action GotoTypeDeclaration<CR>
+nnoremap ]e  :action GotoNextError<CR>
+nnoremap [e  :action GotoPreviousError<CR>
+nnoremap ]m  :action MethodDown<CR>
+nnoremap [m  :action MethodUp<CR>
+
+" ── LSP-style actions ──
+nnoremap <Leader>ca :action ShowIntentionActions<CR>
+nnoremap <Leader>cf :action ReformatCode<CR>
+nnoremap <Leader>cr :action RenameElement<CR>
+nnoremap <Leader>cd :action ShowErrorDescription<CR>
+nnoremap K          :action QuickJavaDoc<CR>
+
+" ── Diagnostics / info ──
+nnoremap <Leader>xx :action ActivateProblemsViewToolWindow<CR>
+
+" ── Build & run ──
+nnoremap <Leader>rr :action Run<CR>
+nnoremap <Leader>rd :action Debug<CR>
+nnoremap <Leader>rb :action BuildProject<CR>
+nnoremap <Leader>rs :action Stop<CR>
+
+" ── Breakpoints ──
+nnoremap <Leader>db :action ToggleLineBreakpoint<CR>
+nnoremap <Leader>dB :action ViewBreakpoints<CR>
+
+" ── Git (mirrors common AstroNvim <Leader>g* bindings) ──
+nnoremap <Leader>gg :action ActivateVersionControlToolWindow<CR>
+nnoremap <Leader>gc :action Git.Commit.Stage<CR>
+nnoremap <Leader>gh :action Vcs.ShowTabbedFileHistory<CR>
+nnoremap <Leader>gb :action Annotate<CR>
+nnoremap ]h         :action VcsShowNextChangeMarker<CR>
+nnoremap [h         :action VcsShowPrevChangeMarker<CR>
+
+" ── Window splits (same as Neovim defaults) ──
+nnoremap <C-w>v :action SplitVertically<CR>
+nnoremap <C-w>s :action SplitHorizontally<CR>
+nnoremap <C-w>c :action Unsplit<CR>
+nnoremap <C-w>h <C-w>h
+nnoremap <C-w>l <C-w>l
+nnoremap <C-w>j <C-w>j
+nnoremap <C-w>k <C-w>k
+
+" ── Terminal / tool windows ──
+nnoremap <Leader>ft :action ActivateTerminalToolWindow<CR>
+nnoremap <Leader>fe :action ActivateProjectToolWindow<CR>
+
+" ── Clear search highlight ──
+nnoremap <Leader>nh :nohlsearch<CR>
+
+" ── Folding ──
+nnoremap zo :action ExpandRegion<CR>
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zR :action ExpandAllRegions<CR>
+nnoremap zM :action CollapseAllRegions<CR>
+
+" ── Tool window toggles ──
+nnoremap <Leader>e :action ActivateProjectToolWindow<CR>
+nnoremap <Leader>o  :action SelectInProjectView<CR>   " reveal current file in explorer
+nnoremap <Leader>tt :action ActivateTerminalToolWindow<CR>
+nnoremap <Leader>xp :action ActivateProblemsViewToolWindow<CR>
+nnoremap <Leader>xs :action ActivateStructureToolWindow<CR>
+nnoremap <Leader>xd :action ActivateDatabaseToolWindow<CR>
+
+" ── Refactoring ──
+nnoremap <Leader>ri :action OptimizeImports<CR>
+nnoremap <Leader>rm :action ExtractMethod<CR>
+nnoremap <Leader>rv :action IntroduceVariable<CR>
+nnoremap <Leader>rf :action IntroduceField<CR>
+nnoremap <Leader>rp :action IntroduceParameter<CR>
+
+" ── Debug stepping ──
+nnoremap <Leader>dc :action Resume<CR>
+nnoremap <Leader>dn :action StepOver<CR>
+nnoremap <Leader>di :action StepInto<CR>
+nnoremap <Leader>do :action StepOut<CR>
+nnoremap <Leader>de :action EvaluateExpression<CR>
+
+" ── Quick navigation ──
+nnoremap <Leader>a  :action GotoAction<CR>        " like command palette
+nnoremap <Leader>/  :action GotoClass<CR>         " jump to any class
+nnoremap <Leader>]  :action Back<CR>              " jump back (like <C-o>)
+nnoremap <Leader>[  :action Forward<CR>           " jump forward (like <C-i>)
+nnoremap <C-o>      :action Back<CR>              " exact Neovim muscle memory
+nnoremap <C-i>      :action Forward<CR>
+
+" EasyMotion - multi-line f-style jump
+nmap <Leader>f <Plug>(easymotion-f)
+nmap <Leader>F <Plug>(easymotion-F)
+nmap <Leader>s <Plug>(easymotion-s2)   " 2-char search across file
+
+" ─── Visual mode ─────────────────────────────────────────────
+
+" Surround (mirrors your visual-mode gsa / gsd / gsc)
+vmap gsa S
+vmap gsd ds
+vmap gsc cs
+
+" Paste without yanking the replaced text (your mapping)
+vnoremap p "_dP
+
+" Indent and stay in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Move selected lines up / down
+vnoremap J :move '>+1<CR>gv=gv
+vnoremap K :move '<-2<CR>gv=gv
+
+" ─── Insert mode ─────────────────────────────────────────────
+
+" Append semicolon at end of line and return to normal (your mapping)
+inoremap <C-;> <Esc>A;<Esc>
+
+" Quick escape
+inoremap jk <Esc>
+inoremap jj <Esc>
+
+" ─── Which-key descriptions ──────────────────────────────────
+let g:WhichKeyDesc_leader        = "<leader>   Leader"
+let g:WhichKeyDesc_files         = "<leader><space> Find files"
+let g:WhichKeyDesc_search        = "<leader>s  Search"
+let g:WhichKeyDesc_search_buf    = "<leader>sb Search buffer"
+let g:WhichKeyDesc_search_grep   = "<leader>sg Live grep"
+let g:WhichKeyDesc_search_rep    = "<leader>sr Search & Replace"
+let g:WhichKeyDesc_buffer        = "<leader>b  Buffer"
+let g:WhichKeyDesc_buf_close     = "<leader>bd Close buffer"
+let g:WhichKeyDesc_code          = "<leader>c  Code"
+let g:WhichKeyDesc_code_action   = "<leader>ca Code action"
+let g:WhichKeyDesc_code_format   = "<leader>cf Format code"
+let g:WhichKeyDesc_code_rename   = "<leader>cr Rename"
+let g:WhichKeyDesc_run           = "<leader>r  Run"
+let g:WhichKeyDesc_run_run       = "<leader>rr Run"
+let g:WhichKeyDesc_run_debug     = "<leader>rd Debug"
+let g:WhichKeyDesc_run_build     = "<leader>rb Build"
+let g:WhichKeyDesc_run_stop      = "<leader>rs Stop"
+let g:WhichKeyDesc_debug         = "<leader>d  Debug"
+let g:WhichKeyDesc_debug_bp      = "<leader>db Toggle breakpoint"
+let g:WhichKeyDesc_debug_bpv     = "<leader>dB View breakpoints"
+let g:WhichKeyDesc_git           = "<leader>g  Git"
+let g:WhichKeyDesc_git_win       = "<leader>gg Git window"
+let g:WhichKeyDesc_git_commit    = "<leader>gc Commit"
+let g:WhichKeyDesc_git_hist      = "<leader>gh File history"
+let g:WhichKeyDesc_git_blame     = "<leader>gb Blame"
+let g:WhichKeyDesc_file          = "<leader>f  File/Tools"
+let g:WhichKeyDesc_file_term     = "<leader>ft Terminal"
+let g:WhichKeyDesc_file_exp      = "<leader>fe Explorer"
+let g:WhichKeyDesc_diag          = "<leader>x  Diagnostics"
+let g:WhichKeyDesc_explorer      = "<leader>e  File Explorer"
+let g:WhichKeyDesc_reveal        = "<leader>o  Reveal in Explorer"
+let g:WhichKeyDesc_terminal      = "<leader>tt Terminal"
+let g:WhichKeyDesc_diag_prob     = "<leader>xp Problems"
+let g:WhichKeyDesc_diag_struct   = "<leader>xs Structure"
+let g:WhichKeyDesc_diag_db       = "<leader>xd Database"
+let g:WhichKeyDesc_ref_imports   = "<leader>ri Optimize imports"
+let g:WhichKeyDesc_ref_method    = "<leader>rm Extract method"
+let g:WhichKeyDesc_ref_var       = "<leader>rv Extract variable"
+let g:WhichKeyDesc_ref_field     = "<leader>rf Extract field"
+let g:WhichKeyDesc_ref_param     = "<leader>rp Extract parameter"
+let g:WhichKeyDesc_dbg_cont      = "<leader>dc Continue"
+let g:WhichKeyDesc_dbg_next      = "<leader>dn Step over"
+let g:WhichKeyDesc_dbg_into      = "<leader>di Step into"
+let g:WhichKeyDesc_dbg_out       = "<leader>do Step out"
+let g:WhichKeyDesc_dbg_eval      = "<leader>de Evaluate expr"
+let g:WhichKeyDesc_action        = "<leader>a  Goto action"
+let g:WhichKeyDesc_class         = "<leader>/  Goto class"
+let g:WhichKeyDesc_back          = "<leader>]  Jump back"
+let g:WhichKeyDesc_fwd           = "<leader>[  Jump forward"
